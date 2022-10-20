@@ -28,7 +28,10 @@ class SpotifyTokenController {
         val spotifyApi =
             spotifyService.clientCredentialsSync(spotifyAuthorization.createSpotifyApi(clientId, clientSecret))
         apiToken.token = spotifyApi?.accessToken
-        return ResponseEntity(HttpStatus.OK)
+        if (apiToken.token.isNullOrBlank()) {
+            return ResponseEntity(apiToken.token, HttpStatus.INTERNAL_SERVER_ERROR)
+        }
+        return ResponseEntity("Token was successfully created", HttpStatus.OK)
     }
 
 }
