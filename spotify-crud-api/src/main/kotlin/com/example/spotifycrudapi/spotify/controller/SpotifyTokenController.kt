@@ -31,7 +31,7 @@ class SpotifyTokenController {
         if (apiToken.token.isNullOrBlank()) {
             return ResponseEntity(apiToken.token, HttpStatus.INTERNAL_SERVER_ERROR)
         }
-        return ResponseEntity("Token was successfully created", HttpStatus.OK)
+        return ResponseEntity("Token was successfully created", HttpStatus.CREATED)
     }
 
 }
