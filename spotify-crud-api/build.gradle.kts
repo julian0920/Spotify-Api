@@ -37,6 +37,8 @@ dependencies {
 	implementation("io.quarkus:quarkus-jdbc-h2:2.13.2.Final")
 	implementation("se.michaelthelin.spotify:spotify-web-api-java:7.2.2")
 	implementation("io.github.microutils:kotlin-logging-jvm:3.0.2")
+	implementation("com.github.dozermapper:dozer-core:6.5.2")
+
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
