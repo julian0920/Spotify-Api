@@ -16,7 +16,7 @@ class SpotifyService {
     @Autowired
     private val spotifyAuthorization = SpotifyAuthorization()
 
-    fun clientCredentialsSync(spotifyApi: SpotifyApi): SpotifyApi? {
+    fun clientCredentialsSync(spotifyApi: SpotifyApi): SpotifyApi {
         try {
             val clientCredentials: ClientCredentials = spotifyApi.clientCredentials().build().execute()
             return spotifyAuthorization.tokenAuthorization(clientCredentials.accessToken)
@@ -25,7 +25,6 @@ class SpotifyService {
         } catch (spotifyWebApiException: SpotifyWebApiException) {
             logger.error("Spotify web exception: {}", spotifyWebApiException.localizedMessage)
         }
-        return null
+        return SpotifyApi.builder().build()
     }
-
 }
