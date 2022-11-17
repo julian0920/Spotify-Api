@@ -31,3 +31,9 @@ You can download IntelliJ from [here](https://www.jetbrains.com/de-de/idea/downl
 3. Check if you have the Gradle Task Symbol on the right side.
 4. Open the Gradle Task Symbol and enter `Tasks` -> `application` -> `bootRun`
 5. When The Application runs you can use Postman or another preferred tool of your choice to perform CRUD Operations on the H2 Database.
+
+## Future improvements:
+- Mapping upgrade from Dozer to mapstruct
+- Split API Layer from Persistence Layer with help of DTOs
+- Constructor Injection instead of Property Injection 
+- Add Mapping with foreign key and add JPA Relation between Album and Artist
