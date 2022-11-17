@@ -32,13 +32,13 @@ class AlbumService {
 
     fun updateAlbumNameById(albumId: Long, name: String) {
         var album = albumRepository.findById(albumId)
-        album.get().name = name
+        album.ifPresent { it.name = name }
         albumRepository.save(album.get())
     }
 
     fun updateAlbumReleaseDateById(albumId: Long, releaseDate: String) {
         var album = albumRepository.findById(albumId)
-        album.get().releaseDate = releaseDate
+        album.ifPresent { it.releaseDate = releaseDate }
         albumRepository.save(album.get())
     }
 
