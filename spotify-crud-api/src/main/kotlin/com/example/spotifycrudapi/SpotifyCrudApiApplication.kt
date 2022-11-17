@@ -27,10 +27,8 @@ class SpotifyCrudApiApplication : CommandLineRunner {
     override fun run(vararg args: String?) {
         albumRepository.saveAll(spotifyArtistService.getArtistAlbumById("4zYX8Aa744hQ5O2hpAYQI3"))
         artistRepository.saveAll(spotifyArtistService.getSeveralArtistsByIds())
-        println("-------------Saved Data into H2 Database-------------")
     }
 }
-
 
 fun main(args: Array<String>) {
     runApplication<SpotifyCrudApiApplication>(*args)
