@@ -15,61 +15,43 @@ class AlbumController {
     private val albumService = AlbumService()
 
     @GetMapping("/albums", produces = [MediaType.APPLICATION_JSON_VALUE])
-    @ResponseBody
     fun getAllAlbums(): ResponseEntity<List<Album>> {
         return ResponseEntity(albumService.getAllAlbums(), HttpStatus.OK)
     }
 
     @GetMapping("/album/{albumId}", produces = [MediaType.APPLICATION_JSON_VALUE])
-    @ResponseBody
     fun getAlbumById(@PathVariable("albumId") albumId: Long): ResponseEntity<Album> {
         return ResponseEntity(albumService.getAlbumById(albumId), HttpStatus.OK)
     }
 
     @PutMapping("/updateAlbumName/{albumId}/{name}", produces = [MediaType.APPLICATION_JSON_VALUE])
-    @ResponseBody
     fun updateAlbumNameById(
         @PathVariable("albumId") albumId: Long,
         @PathVariable("name") name: String
-    ): ResponseEntity<String> {
+    ) {
         albumService.updateAlbumNameById(albumId, name)
-        return ResponseEntity(
-            String.format("Album %d was successfully updated by name %s", albumId, name),
-            HttpStatus.OK
-        )
     }
 
     @PutMapping("/updateAlbumReleaseDate/{albumId}/{releaseDate}", produces = [MediaType.APPLICATION_JSON_VALUE])
-    @ResponseBody
     fun updateAlbumReleaseDateById(
         @PathVariable("albumId") albumId: Long,
         @PathVariable("releaseDate") releaseDate: String
-    ): ResponseEntity<String> {
+    ) {
         albumService.updateAlbumReleaseDateById(albumId, releaseDate)
-        return ResponseEntity(
-            String.format("Album %d was successfully updated by releaseDate %s", albumId, releaseDate),
-            HttpStatus.OK
-        )
     }
 
     @PostMapping("/newAlbum", produces = [MediaType.APPLICATION_JSON_VALUE])
-    @ResponseBody
-    fun saveNewAlbum(@RequestBody album: Album): ResponseEntity<String> {
+    fun saveNewAlbum(@RequestBody album: Album) {
         albumService.saveNewAlbum(album)
-        return ResponseEntity("new Album $album was successfully created", HttpStatus.CREATED)
     }
 
     @DeleteMapping("/deleteAlbums", produces = [MediaType.APPLICATION_JSON_VALUE])
-    @ResponseBody
-    fun deleteAllAlbums(): ResponseEntity<String> {
+    fun deleteAllAlbums() {
         albumService.deleteAllAlbums()
-        return ResponseEntity("All Albums have been deleted", HttpStatus.OK)
     }
 
     @DeleteMapping("/deleteAlbum/{albumId}", produces = [MediaType.APPLICATION_JSON_VALUE])
-    @ResponseBody
-    fun deleteAlbumById(@PathVariable("albumId") albumId: Long): ResponseEntity<String> {
+    fun deleteAlbumById(@PathVariable("albumId") albumId: Long) {
         albumService.deleteAlbumById(albumId)
-        return ResponseEntity(String.format("Album with id %d was successfully deleted", albumId), HttpStatus.OK)
     }
 }
