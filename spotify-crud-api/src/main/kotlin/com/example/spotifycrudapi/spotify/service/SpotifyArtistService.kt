@@ -33,7 +33,7 @@ class SpotifyArtistService {
         val spotifyApi = spotifyService.clientCredentialsSync(spotifyAuthorization.createSpotifyApi())
         try {
             val artistList = spotifyApi.getSeveralArtists(artistIds).build().execute().asList()
-            return mapper.mapToList(artistList, Artist::class.java)
+            return mapper.mapToList(artistList, Artist::class)
         } catch (ioException: IOException) {
             logger.error("Error {}", ioException.localizedMessage)
         } catch (swae: SpotifyWebApiException) {
@@ -47,7 +47,7 @@ class SpotifyArtistService {
         try {
             val albumSimplifiedList = spotifyApi.getArtistsAlbums(artistId).album_type("album,single").limit(10).build()
                 .execute().items.asList()
-            return mapper.mapToList(albumSimplifiedList, Album::class.java)
+            return mapper.mapToList(albumSimplifiedList, Album::class)
         } catch (ioException: IOException) {
             logger.error("Error {}", ioException.localizedMessage)
         } catch (swae: SpotifyWebApiException) {
