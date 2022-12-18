@@ -41,12 +41,12 @@ class ArtistController(
         artistService.createNewArtist(artist)
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping
     fun deleteAllArtists() {
         artistService.deleteAllArtists()
     }
 
-    @DeleteMapping("/{artistId}/delete")
+    @DeleteMapping("/{artistId}")
     fun deleteArtistById(@PathVariable("artistId") artistId: Long) {
         artistService.deleteArtistById(artistId)
     }

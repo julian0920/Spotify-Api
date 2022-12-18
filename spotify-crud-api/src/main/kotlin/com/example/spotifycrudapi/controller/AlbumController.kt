@@ -41,12 +41,12 @@ class AlbumController(
         albumService.createNewAlbum(album)
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping
     fun deleteAllAlbums() {
         albumService.deleteAllAlbums()
     }
 
-    @DeleteMapping("/{albumId}/delete")
+    @DeleteMapping("/{albumId}")
     fun deleteAlbumById(@PathVariable("albumId") albumId: Long) {
         albumService.deleteAlbumById(albumId)
     }
