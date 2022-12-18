@@ -1,4 +1,4 @@
-# Spotify-CRUD-Api
+# Spotify-Api
 
 ## Introduction
 The goal of this challenge is to demonstrate knowledge and skills in interfacing with external APIs and databases
