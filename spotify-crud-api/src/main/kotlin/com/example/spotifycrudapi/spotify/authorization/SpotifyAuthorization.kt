@@ -5,13 +5,13 @@ import org.springframework.stereotype.Component
 import se.michaelthelin.spotify.SpotifyApi
 
 @Component
-class SpotifyAuthorization {
-
+class SpotifyAuthorization(
     @Value("\${spotify.clientid}")
-    lateinit var clientId: String
+    private val clientId: String,
 
     @Value("\${spotify.clientsecret}")
-    lateinit var clientSecret: String
+    private val clientSecret: String
+) {
 
     fun createSpotifyApi(): SpotifyApi {
         return SpotifyApi.builder()
