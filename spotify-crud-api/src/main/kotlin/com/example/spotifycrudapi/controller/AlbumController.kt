@@ -2,9 +2,6 @@ package com.example.spotifycrudapi.controller
 
 import com.example.spotifycrudapi.model.Album
 import com.example.spotifycrudapi.service.AlbumService
-import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -14,13 +11,13 @@ class AlbumController(
 ) {
 
     @GetMapping
-    fun getAllAlbums(): ResponseEntity<List<Album>> {
-        return ResponseEntity(albumService.getAllAlbums(), HttpStatus.OK)
+    fun getAllAlbums(): List<Album> {
+        return albumService.getAllAlbums()
     }
 
     @GetMapping("/{albumId}")
-    fun getAlbumById(@PathVariable("albumId") albumId: Long): ResponseEntity<Album> {
-        return ResponseEntity(albumService.getAlbumById(albumId), HttpStatus.OK)
+    fun getAlbumById(@PathVariable("albumId") albumId: Long): Album {
+        return albumService.getAlbumById(albumId)
     }
 
     @PutMapping("/{albumId}/{name}")
@@ -31,7 +28,7 @@ class AlbumController(
         albumService.updateAlbumNameById(albumId, name)
     }
 
-    @PutMapping("/{albumId}/{releaseDate}", produces = [MediaType.APPLICATION_JSON_VALUE])
+    @PutMapping("/{albumId}/{releaseDate}")
     fun updateAlbumReleaseDateById(
         @PathVariable("albumId") albumId: Long,
         @PathVariable("releaseDate") releaseDate: String
@@ -49,7 +46,7 @@ class AlbumController(
         albumService.deleteAllAlbums()
     }
 
-    @DeleteMapping("/{albumId}/delete", produces = [MediaType.APPLICATION_JSON_VALUE])
+    @DeleteMapping("/{albumId}/delete")
     fun deleteAlbumById(@PathVariable("albumId") albumId: Long) {
         albumService.deleteAlbumById(albumId)
     }
