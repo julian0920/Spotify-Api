@@ -2,29 +2,25 @@ package com.example.spotifycrudapi.controller
 
 import com.example.spotifycrudapi.model.Artist
 import com.example.spotifycrudapi.service.ArtistService
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-class ArtistController {
+@RequestMapping("/artists")
+class ArtistController(
+    private val artistService: ArtistService
+) {
 
-    @Autowired
-    private val artistService = ArtistService()
-
-    @GetMapping("/artists", produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun getAllArtists(): ResponseEntity<List<Artist>> {
-        return ResponseEntity(artistService.getAllArtists(), HttpStatus.OK)
+    @GetMapping
+    fun getAllArtists(): List<Artist> {
+        return artistService.getAllArtists()
     }
 
-    @GetMapping("/artist/{artistId}", produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun getArtistById(@PathVariable("artistId") artistId: Long): ResponseEntity<Artist> {
-        return ResponseEntity(artistService.getArtistById(artistId), HttpStatus.OK)
+    @GetMapping("/{artistId}")
+    fun getArtistById(@PathVariable("artistId") artistId: Long): Artist {
+        return artistService.getArtistById(artistId)
     }
 
-    @PutMapping("/updateArtistName/{artistId}/{name}", produces = [MediaType.APPLICATION_JSON_VALUE])
+    @PutMapping("/{artistId}/{name}")
     fun updateArtistNameById(
         @PathVariable("artistId") artistId: Long,
         @PathVariable("name") name: String
@@ -32,7 +28,7 @@ class ArtistController {
         artistService.updateArtistNameById(artistId, name)
     }
 
-    @PutMapping("/updateArtistPopularity/{artistId}/{popularity}", produces = [MediaType.APPLICATION_JSON_VALUE])
+    @PutMapping("/{artistId}/{popularity}")
     fun updateArtistPopularityById(
         @PathVariable("artistId") artistId: Long,
         @PathVariable("popularity") popularity: Int
@@ -40,17 +36,17 @@ class ArtistController {
         artistService.updateArtistPopularityById(artistId, popularity)
     }
 
-    @PostMapping("/newArtist", produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun saveNewArtist(@RequestBody artist: Artist) {
-        artistService.saveNewArtist(artist)
+    @PostMapping("/create")
+    fun createNewArtist(@RequestBody artist: Artist) {
+        artistService.createNewArtist(artist)
     }
 
-    @DeleteMapping("/deleteArtists", produces = [MediaType.APPLICATION_JSON_VALUE])
+    @DeleteMapping("/delete")
     fun deleteAllArtists() {
         artistService.deleteAllArtists()
     }
 
-    @DeleteMapping("(deleteArtist/{artistId}", produces = [MediaType.APPLICATION_JSON_VALUE])
+    @DeleteMapping("/{artistId}/delete")
     fun deleteArtistById(@PathVariable("artistId") artistId: Long) {
         artistService.deleteArtistById(artistId)
     }
