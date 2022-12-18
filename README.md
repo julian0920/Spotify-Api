@@ -37,3 +37,4 @@ You can download IntelliJ from [here](https://www.jetbrains.com/de-de/idea/downl
 - Split API Layer from Persistence Layer with help of DTOs
 - Constructor Injection instead of Property Injection 
 - Add Mapping with foreign key and add JPA Relation between Album and Artist
+- Add Code Coverage with JUnit Tests and WireMock
