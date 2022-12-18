@@ -3,14 +3,13 @@ package com.example.spotifycrudapi.service
 import com.example.spotifycrudapi.model.Album
 import com.example.spotifycrudapi.repositories.AlbumRepository
 import mu.KotlinLogging
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.text.MessageFormat
 
 @Service
-class AlbumService {
-
-    @Autowired
-    lateinit var albumRepository: AlbumRepository
+class AlbumService(
+    private val albumRepository: AlbumRepository
+) {
 
     private val logger = KotlinLogging.logger {}
 
@@ -19,10 +18,11 @@ class AlbumService {
     }
 
     fun getAlbumById(albumId: Long): Album {
-        return albumRepository.findById(albumId).get()
+        return albumRepository.findById(albumId)
+            .orElseThrow { IllegalArgumentException(MessageFormat.format("unknown album id {}", albumId)) }
     }
 
-    fun saveNewAlbum(album: Album) {
+    fun createNewAlbum(album: Album) {
         try {
             albumRepository.save(Album(album.id, album.name, album.releaseDate, album.type))
         } catch (iae: IllegalArgumentException) {
@@ -31,15 +31,19 @@ class AlbumService {
     }
 
     fun updateAlbumNameById(albumId: Long, name: String) {
-        var album = albumRepository.findById(albumId)
-        album.ifPresent { it.name = name }
-        albumRepository.save(album.get())
+        val album = albumRepository.findById(albumId)
+        album.ifPresent {
+            it.name = name
+            albumRepository.save(it)
+        }
     }
 
     fun updateAlbumReleaseDateById(albumId: Long, releaseDate: String) {
-        var album = albumRepository.findById(albumId)
-        album.ifPresent { it.releaseDate = releaseDate }
-        albumRepository.save(album.get())
+        val album = albumRepository.findById(albumId)
+        album.ifPresent {
+            it.releaseDate = releaseDate
+            albumRepository.save(it)
+        }
     }
 
     fun deleteAllAlbums() {
@@ -50,7 +54,7 @@ class AlbumService {
         try {
             albumRepository.deleteById(albumId)
         } catch (iae: IllegalArgumentException) {
-            logger.error("unknown id {}", albumId)
+            logger.error("unknown album id {}", albumId)
         }
     }
 }

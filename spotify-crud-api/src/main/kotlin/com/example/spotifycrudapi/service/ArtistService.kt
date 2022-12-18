@@ -3,14 +3,13 @@ package com.example.spotifycrudapi.service
 import com.example.spotifycrudapi.model.Artist
 import com.example.spotifycrudapi.repositories.ArtistRepository
 import mu.KotlinLogging
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.text.MessageFormat
 
 @Service
-class ArtistService {
-
-    @Autowired
-    lateinit var artistRepository: ArtistRepository
+class ArtistService(
+    private val artistRepository: ArtistRepository
+) {
 
     private val logger = KotlinLogging.logger {}
 
@@ -19,10 +18,11 @@ class ArtistService {
     }
 
     fun getArtistById(artistId: Long): Artist {
-        return artistRepository.findById(artistId).get()
+        return artistRepository.findById(artistId)
+            .orElseThrow { IllegalArgumentException(MessageFormat.format("unknown artist id {}", artistId)) }
     }
 
-    fun saveNewArtist(artist: Artist) {
+    fun createNewArtist(artist: Artist) {
         try {
             artistRepository.save(Artist(artist.id, artist.name, artist.popularity, artist.genres))
         } catch (iae: IllegalArgumentException) {
@@ -31,15 +31,19 @@ class ArtistService {
     }
 
     fun updateArtistNameById(artistId: Long, name: String) {
-        var artist = artistRepository.findById(artistId)
-        artist.get().name = name
-        artistRepository.save(artist.get())
+        val artist = artistRepository.findById(artistId)
+        artist.ifPresent {
+            it.name = name
+            artistRepository.save(it)
+        }
     }
 
     fun updateArtistPopularityById(artistId: Long, popularity: Int) {
-        var artist = artistRepository.findById(artistId)
-        artist.get().popularity = popularity
-        artistRepository.save(artist.get())
+        val artist = artistRepository.findById(artistId)
+        artist.ifPresent {
+            it.popularity = popularity
+            artistRepository.save(it)
+        }
     }
 
     fun deleteAllArtists() {
@@ -50,7 +54,7 @@ class ArtistService {
         try {
             artistRepository.deleteById(artistId)
         } catch (iae: IllegalArgumentException) {
-            logger.error("unknown id {}", artistId)
+            logger.error("unknown artist id {}", artistId)
         }
     }
 }
