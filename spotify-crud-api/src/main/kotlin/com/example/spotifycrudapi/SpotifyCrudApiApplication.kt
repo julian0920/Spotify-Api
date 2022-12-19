@@ -1,5 +1,7 @@
 package com.example.spotifycrudapi
 
+import com.example.spotifycrudapi.model.Album
+import com.example.spotifycrudapi.model.Artist
 import com.example.spotifycrudapi.repositories.AlbumRepository
 import com.example.spotifycrudapi.repositories.ArtistRepository
 import com.example.spotifycrudapi.spotify.service.SpotifyArtistService
@@ -10,8 +12,8 @@ import org.springframework.boot.runApplication
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @SpringBootApplication
-@EntityScan(basePackages = ["com.example.spotifycrudapi.model"])
-@EnableJpaRepositories(basePackages = ["com.example.spotifycrudapi.repositories"])
+@EntityScan(basePackageClasses = [Album::class, Artist::class])
+@EnableJpaRepositories(basePackageClasses = [AlbumRepository::class, ArtistRepository::class])
 class SpotifyCrudApiApplication(
     private val spotifyArtistService: SpotifyArtistService,
     private val albumRepository: AlbumRepository,
