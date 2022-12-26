@@ -1,6 +1,5 @@
-package com.example.spotifycrudapi.spotify.service
+package com.example.spotifycrudapi.spotify.authorization
 
-import com.example.spotifycrudapi.spotify.authorization.SpotifyAuthorization
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
 import se.michaelthelin.spotify.SpotifyApi
