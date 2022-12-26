@@ -1,8 +1,9 @@
 package com.example.spotifycrudapi.spotify.service
 
-import com.example.spotifycrudapi.model.Album
-import com.example.spotifycrudapi.model.Artist
+import com.example.spotifycrudapi.persistence.Album
+import com.example.spotifycrudapi.persistence.Artist
 import com.example.spotifycrudapi.spotify.authorization.SpotifyAuthorization
+import com.example.spotifycrudapi.spotify.authorization.SpotifyService
 import com.example.spotifycrudapi.spotify.helper.DozerMappingHelper
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
@@ -25,7 +26,7 @@ class SpotifyArtistService(
 
 
     fun getSeveralArtistsByIds(): List<Artist> {
-        val spotifyApi = spotifyService.clientCredentialsSync(spotifyAuthorization.createSpotifyApi())
+        val spotifyApi = spotifyService.clientCredentialsSync(spotifyAuthorization.createClientCredentialsSync())
         try {
             val artistList = spotifyApi.getSeveralArtists(ARTIST_IDS).build().execute().asList()
             return mapper.mapToList(artistList, Artist::class)
@@ -38,7 +39,7 @@ class SpotifyArtistService(
     }
 
     fun getArtistAlbumById(artistId: String): List<Album> {
-        val spotifyApi = spotifyService.clientCredentialsSync(spotifyAuthorization.createSpotifyApi())
+        val spotifyApi = spotifyService.clientCredentialsSync(spotifyAuthorization.createClientCredentialsSync())
         try {
             val albumSimplifiedList = spotifyApi.getArtistsAlbums(artistId).album_type("album,single").limit(10).build()
                 .execute().items.asList()

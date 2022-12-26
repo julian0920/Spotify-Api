@@ -13,7 +13,7 @@ class SpotifyAuthorization(
     private val clientSecret: String
 ) {
 
-    fun createSpotifyApi(): SpotifyApi {
+    fun createClientCredentialsSync(): SpotifyApi {
         return SpotifyApi.builder()
             .setClientId(clientId)
             .setClientSecret(clientSecret)
