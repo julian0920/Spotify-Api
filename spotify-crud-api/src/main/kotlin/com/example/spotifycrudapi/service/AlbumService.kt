@@ -1,6 +1,6 @@
 package com.example.spotifycrudapi.service
 
-import com.example.spotifycrudapi.model.Album
+import com.example.spotifycrudapi.persistence.Album
 import com.example.spotifycrudapi.repositories.AlbumRepository
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
@@ -24,7 +24,7 @@ class AlbumService(
 
     fun createNewAlbum(album: Album) {
         try {
-            albumRepository.save(Album(album.id, album.name, album.releaseDate, album.type))
+            albumRepository.save(album)
         } catch (iae: IllegalArgumentException) {
             logger.error("unknown entity {}", album)
         }

@@ -1,7 +1,7 @@
 package com.example.spotifycrudapi
 
-import com.example.spotifycrudapi.model.Album
-import com.example.spotifycrudapi.model.Artist
+import com.example.spotifycrudapi.persistence.Album
+import com.example.spotifycrudapi.persistence.Artist
 import com.example.spotifycrudapi.repositories.AlbumRepository
 import com.example.spotifycrudapi.repositories.ArtistRepository
 import com.example.spotifycrudapi.spotify.service.SpotifyArtistService

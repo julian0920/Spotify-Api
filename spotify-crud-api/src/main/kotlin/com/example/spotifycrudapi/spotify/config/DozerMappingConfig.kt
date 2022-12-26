@@ -18,12 +18,12 @@ class DozerMappingConfig {
     @Bean
     fun beanMappingBuilder() = object : BeanMappingBuilder() {
         override fun configure() {
-            mapping(AlbumSimplified::class.java, com.example.spotifycrudapi.model.Album::class.java)
+            mapping(AlbumSimplified::class.java, com.example.spotifycrudapi.persistence.Album::class.java)
                 .exclude("id")
                 .fields("name", "name")
                 .fields("releaseDate", "releaseDate")
                 .fields("type.type", "type")
-            mapping(Artist::class.java, com.example.spotifycrudapi.model.Artist::class.java)
+            mapping(Artist::class.java, com.example.spotifycrudapi.persistence.Artist::class.java)
                 .exclude("id")
                 .fields("name", "name")
                 .fields("popularity", "popularity")
