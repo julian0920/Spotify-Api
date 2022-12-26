@@ -1,6 +1,6 @@
 package com.example.spotifycrudapi.controller
 
-import com.example.spotifycrudapi.model.Artist
+import com.example.spotifycrudapi.persistence.Artist
 import com.example.spotifycrudapi.service.ArtistService
 import org.springframework.web.bind.annotation.*
 
