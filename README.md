@@ -16,7 +16,7 @@ Kotlin and Spring Boot with Hibernate has to be used.
 ## Tech Stack
 - Programming Language [Kotlin](https://kotlinlang.org/docs/getting-started.html)
 - Frameworks [Spring](https://spring.io/), [Hibernate](https://hibernate.org/)
-- Tools [Spotify-Web-API](https://github.com/spotify-web-api-java/spotify-web-api-java), [Dozer](https://github.com/DozerMapper/dozer)
+- Tools [Spotify-Web-API](https://github.com/spotify-web-api-java/spotify-web-api-java), [Mapstruct](https://mapstruct.org/)
 - Memory-Database [H2](https://www.h2database.com/html/main.html)
 - Build Tool [Gradle](https://gradle.org/)
 
