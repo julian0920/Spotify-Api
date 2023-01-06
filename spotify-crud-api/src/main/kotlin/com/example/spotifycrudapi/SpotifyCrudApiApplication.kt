@@ -4,6 +4,7 @@ import com.example.spotifycrudapi.persistence.Album
 import com.example.spotifycrudapi.persistence.Artist
 import com.example.spotifycrudapi.repositories.AlbumRepository
 import com.example.spotifycrudapi.repositories.ArtistRepository
+import com.example.spotifycrudapi.spotify.service.SpotifyAlbumService
 import com.example.spotifycrudapi.spotify.service.SpotifyArtistService
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -16,13 +17,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @EnableJpaRepositories(basePackageClasses = [AlbumRepository::class, ArtistRepository::class])
 class SpotifyCrudApiApplication(
     private val spotifyArtistService: SpotifyArtistService,
+    private val spotifyAlbumService: SpotifyAlbumService,
     private val albumRepository: AlbumRepository,
     private val artistRepository: ArtistRepository
 ) : CommandLineRunner {
 
     override fun run(vararg args: String?) {
-        albumRepository.saveAll(spotifyArtistService.getArtistAlbumById("4zYX8Aa744hQ5O2hpAYQI3"))
-        artistRepository.saveAll(spotifyArtistService.getSeveralArtistsByIds())
+        albumRepository.saveAll(spotifyAlbumService.getArtistAlbumById("4zYX8Aa744hQ5O2hpAYQI3"))
+        artistRepository.saveAll((spotifyArtistService.getSeveralArtistsByIds()))
     }
 }
 
