@@ -20,7 +20,7 @@ class SpotifyAuthorization(
             .build()
     }
 
-    fun tokenAuthorization(accessToken: String?): SpotifyApi {
+    fun setAccessToken(accessToken: String?): SpotifyApi {
         return SpotifyApi.builder().setAccessToken(accessToken).build()
     }
 }
