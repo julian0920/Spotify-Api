@@ -5,5 +5,7 @@ data class AlbumDto(
 
     val releaseDate: String?,
 
-    val type: String?
+    val type: String?,
+
+    val artists: List<ArtistDto>
 )
