@@ -29,7 +29,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-data-rest")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-jdbc:3.0.0")
+	implementation("org.springframework.boot:spring-boot-starter-jdbc:3.0.1")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -37,7 +37,6 @@ dependencies {
 	implementation("io.quarkus:quarkus-jdbc-h2:2.14.2.Final")
 	implementation("se.michaelthelin.spotify:spotify-web-api-java:7.3.0")
 	implementation("io.github.microutils:kotlin-logging-jvm:3.0.4")
-	implementation("com.github.dozermapper:dozer-core:6.5.2")
 	implementation("org.mapstruct:mapstruct:1.5.3.Final")
 
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
