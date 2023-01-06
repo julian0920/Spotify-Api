@@ -19,7 +19,7 @@ class Album(
     @Column(name = "album_type", nullable = true)
     val type: String?,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_FK")
-    val artist: Artist
+    val artists: List<Artist>
 )

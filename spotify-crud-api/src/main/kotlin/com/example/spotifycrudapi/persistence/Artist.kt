@@ -21,6 +21,6 @@ class Artist(
     val genres: List<String>?,
 
     @Column(nullable = true)
-    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY, mappedBy = "artist")
+    @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY, mappedBy = "artists")
     val albums: List<Album>?
 )
