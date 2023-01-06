@@ -1,6 +1,7 @@
 package com.example.spotifycrudapi.service
 
-import com.example.spotifycrudapi.persistence.Album
+import com.example.spotifycrudapi.mapper.AlbumMapper
+import com.example.spotifycrudapi.model.AlbumDto
 import com.example.spotifycrudapi.repositories.AlbumRepository
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
@@ -8,21 +9,25 @@ import java.text.MessageFormat
 
 @Service
 class AlbumService(
-    private val albumRepository: AlbumRepository
+    private val albumRepository: AlbumRepository,
 ) {
+
+    private lateinit var albumMapper: AlbumMapper
 
     private val logger = KotlinLogging.logger {}
 
-    fun getAllAlbums(): List<Album> {
-        return albumRepository.findAll()
+    fun getAllAlbums(): List<AlbumDto> {
+        return albumMapper.mapAlbumsToAlbumDtoList(albumRepository.findAll())
     }
 
-    fun getAlbumById(albumId: Long): Album {
-        return albumRepository.findById(albumId)
+    fun getAlbumById(albumId: Long): AlbumDto {
+        val album = albumRepository.findById(albumId)
             .orElseThrow { IllegalArgumentException(MessageFormat.format("unknown album id {}", albumId)) }
+        return albumMapper.mapAlbumToAlbumDto(album)
     }
 
-    fun createNewAlbum(album: Album) {
+    fun createNewAlbum(albumDto: AlbumDto) {
+        val album = albumMapper.mapAlbumDtoToAlbum(albumDto)
         try {
             albumRepository.save(album)
         } catch (iae: IllegalArgumentException) {
