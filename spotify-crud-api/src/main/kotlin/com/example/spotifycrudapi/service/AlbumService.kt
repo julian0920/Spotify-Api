@@ -10,9 +10,8 @@ import java.text.MessageFormat
 @Service
 class AlbumService(
     private val albumRepository: AlbumRepository,
+    private val albumMapper: AlbumMapper
 ) {
-
-    private lateinit var albumMapper: AlbumMapper
 
     private val logger = KotlinLogging.logger {}
 

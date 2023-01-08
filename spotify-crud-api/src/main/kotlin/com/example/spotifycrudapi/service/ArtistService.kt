@@ -9,10 +9,9 @@ import java.text.MessageFormat
 
 @Service
 class ArtistService(
-    private val artistRepository: ArtistRepository
+    private val artistRepository: ArtistRepository,
+    private val artistMapper: ArtistMapper
 ) {
-
-    private lateinit var artistMapper: ArtistMapper
 
     private val logger = KotlinLogging.logger {}
 
