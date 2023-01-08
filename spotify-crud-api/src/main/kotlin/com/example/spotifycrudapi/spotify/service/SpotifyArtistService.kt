@@ -1,6 +1,7 @@
 package com.example.spotifycrudapi.spotify.service
 
 import com.example.spotifycrudapi.mapper.ArtistMapper
+import com.example.spotifycrudapi.mapper.SpotifyArtistMapper
 import com.example.spotifycrudapi.persistence.Artist
 import com.example.spotifycrudapi.spotify.authorization.SpotifyAuthorization
 import com.example.spotifycrudapi.spotify.authorization.SpotifyService
@@ -17,18 +18,19 @@ private const val ARTIST_IDS = "4zYX8Aa744hQ5O2hpAYQI3,37awA8DFCAnCCL7aqYbDnD," 
 @Service
 class SpotifyArtistService(
     private val spotifyAuthorization: SpotifyAuthorization,
-    private val spotifyService: SpotifyService
+    private val spotifyService: SpotifyService,
+    private val artistMapper: ArtistMapper,
+    private val spotifyArtistMapper: SpotifyArtistMapper
 ) {
 
-    private lateinit var artistMapper: ArtistMapper
     private val logger = KotlinLogging.logger {}
-
 
     fun getSeveralArtistsByIds(): List<Artist> {
         val spotifyApi = spotifyService.register(spotifyAuthorization.createClientCredentialsSync())
         try {
             val artistList = spotifyApi.getSeveralArtists(ARTIST_IDS).build().execute().asList()
-            return artistMapper.mapToArtistList(artistList)
+            val artistDtos = spotifyArtistMapper.mapToArtistDtoList(artistList)
+            return artistMapper.mapArtistDtosToArtistList(artistDtos)
         } catch (ioException: IOException) {
             logger.error("Error {}", ioException.localizedMessage)
         } catch (swae: SpotifyWebApiException) {
