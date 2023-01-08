@@ -2,14 +2,10 @@ package com.example.spotifycrudapi.mapper
 
 import com.example.spotifycrudapi.model.ArtistDto
 import com.example.spotifycrudapi.persistence.Artist
-import org.mapstruct.InjectionStrategy
 import org.mapstruct.Mapper
-import org.mapstruct.MappingConstants.ComponentModel
 
-@Mapper(componentModel = ComponentModel.SPRING, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(uses = [SpotifyArtistMapper::class])
 interface ArtistMapper {
-
-    fun mapToArtistDtoList(spotifyArtists: List<se.michaelthelin.spotify.model_objects.specification.Artist>): List<ArtistDto>
 
     fun mapArtistToArtistDto(artist: Artist): ArtistDto
 
@@ -18,6 +14,4 @@ interface ArtistMapper {
     fun mapArtistDtoToArtist(artistDto: ArtistDto): Artist
 
     fun mapArtistDtosToArtistList(artistDtos: List<ArtistDto>): List<Artist>
-
-    fun mapToArtistList(artists: List<se.michaelthelin.spotify.model_objects.specification.Artist>): List<Artist>
 }
