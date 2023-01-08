@@ -65,3 +65,9 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+tasks.withType<JavaCompile> {
+	val compilerArgs = options.compilerArgs
+	compilerArgs.add("-Amapstruct.defaultComponentModel=spring")
+	compilerArgs.add("-Amapstruct.defaultInjectionStrategy=constructor")
+}
