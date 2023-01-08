@@ -6,7 +6,7 @@ import javax.persistence.*
 @Table(name = "album")
 class Album(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     @Column(nullable = false)
     val id: Long,
 
@@ -20,6 +20,10 @@ class Album(
     val type: String?,
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "artist_FK")
+    @JoinTable(
+        name = "album_artist",
+        joinColumns = [JoinColumn(name = "artist_id")],
+        inverseJoinColumns = [JoinColumn(name = "album_id")]
+    )
     val artists: List<Artist>
 )
