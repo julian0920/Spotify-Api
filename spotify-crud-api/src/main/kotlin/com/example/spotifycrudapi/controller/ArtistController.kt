@@ -1,6 +1,6 @@
 package com.example.spotifycrudapi.controller
 
-import com.example.spotifycrudapi.persistence.Artist
+import com.example.spotifycrudapi.model.ArtistDto
 import com.example.spotifycrudapi.service.ArtistService
 import org.springframework.web.bind.annotation.*
 
@@ -11,12 +11,12 @@ class ArtistController(
 ) {
 
     @GetMapping
-    fun getAllArtists(): List<Artist> {
+    fun getAllArtists(): List<ArtistDto> {
         return artistService.getAllArtists()
     }
 
     @GetMapping("/{artistId}")
-    fun getArtistById(@PathVariable("artistId") artistId: Long): Artist {
+    fun getArtistById(@PathVariable("artistId") artistId: Long): ArtistDto {
         return artistService.getArtistById(artistId)
     }
 
@@ -37,8 +37,8 @@ class ArtistController(
     }
 
     @PostMapping("/create")
-    fun createNewArtist(@RequestBody artist: Artist) {
-        artistService.createNewArtist(artist)
+    fun createNewArtist(@RequestBody artistDto: ArtistDto) {
+        artistService.createNewArtist(artistDto)
     }
 
     @DeleteMapping

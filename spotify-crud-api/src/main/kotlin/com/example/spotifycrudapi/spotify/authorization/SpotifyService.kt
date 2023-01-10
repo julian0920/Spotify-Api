@@ -14,10 +14,10 @@ class SpotifyService(
 
     private val logger = KotlinLogging.logger {}
 
-    fun clientCredentialsSync(spotifyApi: SpotifyApi): SpotifyApi {
+    fun register(spotifyApi: SpotifyApi): SpotifyApi {
         try {
             val clientCredentials: ClientCredentials = spotifyApi.clientCredentials().build().execute()
-            return spotifyAuthorization.tokenAuthorization(clientCredentials.accessToken)
+            return spotifyAuthorization.setAccessToken(clientCredentials.accessToken)
         } catch (exception: IOException) {
             logger.error("Error {}", exception.localizedMessage)
         } catch (spotifyWebApiException: SpotifyWebApiException) {
