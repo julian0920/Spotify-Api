@@ -2,11 +2,13 @@ package com.example.spotifycrudapi.mapper
 
 import com.example.spotifycrudapi.model.AlbumDto
 import com.example.spotifycrudapi.model.AlbumSimplifiedDto
+import org.mapstruct.InjectionStrategy
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
+import org.mapstruct.MappingConstants
 import se.michaelthelin.spotify.model_objects.specification.AlbumSimplified
 
-@Mapper
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 interface AlbumSimplifiedMapper {
 
     @Mapping(target = "type", source = "type.type")
