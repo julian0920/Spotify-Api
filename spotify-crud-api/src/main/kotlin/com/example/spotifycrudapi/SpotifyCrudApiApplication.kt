@@ -24,7 +24,7 @@ class SpotifyCrudApiApplication(
 
     override fun run(vararg args: String?) {
         albumRepository.saveAll(spotifyAlbumService.getArtistAlbumById("4zYX8Aa744hQ5O2hpAYQI3"))
-        artistRepository.saveAll((spotifyArtistService.getSeveralArtistsByIds()))
+        artistRepository.saveAll(spotifyArtistService.getSeveralArtistsByIds())
     }
 }
 
