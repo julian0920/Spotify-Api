@@ -33,5 +33,4 @@ You can download IntelliJ from [here](https://www.jetbrains.com/de-de/idea/downl
 5. When The Application runs you can use Postman or another preferred tool of your choice to perform CRUD Operations on the H2 Database.
 
 ## Future improvements:
-- Add Mapping with foreign key and add JPA Relation between Album and Artist
 - Add Code Coverage with JUnit Tests and WireMock
