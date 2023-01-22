@@ -17,7 +17,7 @@ class ArtistService(
 
     fun getAllArtists(): List<ArtistDto> {
         val artists = artistRepository.findAll()
-        return artists.map { artistMapper.mapArtistToArtistDto(it) }.toList()
+        return artists.map { artistMapper.mapArtistToArtistDto(it) }
     }
 
     fun getArtistById(artistId: Long): ArtistDto {

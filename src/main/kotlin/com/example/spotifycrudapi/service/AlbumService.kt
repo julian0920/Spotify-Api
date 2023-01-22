@@ -17,7 +17,7 @@ class AlbumService(
 
     fun getAllAlbums(): List<AlbumDto> {
         val albums = albumRepository.findAll()
-        return albums.map { albumMapper.mapAlbumToAlbumDto(it) }.toList()
+        return albums.map { albumMapper.mapAlbumToAlbumDto(it) }
     }
 
     fun getAlbumById(albumId: Long): AlbumDto {
