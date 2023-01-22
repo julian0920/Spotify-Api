@@ -25,10 +25,9 @@ class SpotifyAlbumService(
         try {
             val albumSimplifiedList = spotifyApi.getArtistsAlbums(artistId).album_type("album,single").limit(10).build()
                 .execute().items.asList()
-            val albumSimplifiedDtos =
-                albumSimplifiedMapper.mapAlbumSimplifiedListToAlbumSimplifiedDtoList(albumSimplifiedList)
-            val albumDtos = albumSimplifiedMapper.mapAlbumSimplifiedDtoListToAlbumDtoList(albumSimplifiedDtos)
-            return albumMapper.mapAlbumDtosToAlbumList(albumDtos)
+            val albumSimplifiedDtos = albumSimplifiedList.map { albumSimplifiedMapper.mapAlbumSimplifiedToAlbumSimplifiedDto(it) }
+            val albumDtos = albumSimplifiedDtos.map { albumSimplifiedMapper.mapAlbumSimplifiedDtoToAlbumDto(it) }
+            return albumDtos.map { albumMapper.mapAlbumDtoToAlbum(it) }
         } catch (ioException: IOException) {
             logger.error("Error {}", ioException.localizedMessage)
         } catch (swae: SpotifyWebApiException) {

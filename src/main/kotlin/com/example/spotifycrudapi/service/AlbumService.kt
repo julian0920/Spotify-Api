@@ -16,7 +16,8 @@ class AlbumService(
     private val logger = KotlinLogging.logger {}
 
     fun getAllAlbums(): List<AlbumDto> {
-        return albumMapper.mapAlbumsToAlbumDtoList(albumRepository.findAll())
+        val albums = albumRepository.findAll()
+        return albums.map { albumMapper.mapAlbumToAlbumDto(it) }.toList()
     }
 
     fun getAlbumById(albumId: Long): AlbumDto {

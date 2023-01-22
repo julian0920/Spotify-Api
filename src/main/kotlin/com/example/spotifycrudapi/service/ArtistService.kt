@@ -16,7 +16,8 @@ class ArtistService(
     private val logger = KotlinLogging.logger {}
 
     fun getAllArtists(): List<ArtistDto> {
-        return artistMapper.mapArtistsToArtistDtoList(artistRepository.findAll())
+        val artists = artistRepository.findAll()
+        return artists.map { artistMapper.mapArtistToArtistDto(it) }.toList()
     }
 
     fun getArtistById(artistId: Long): ArtistDto {

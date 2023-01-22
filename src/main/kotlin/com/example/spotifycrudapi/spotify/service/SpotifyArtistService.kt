@@ -29,8 +29,8 @@ class SpotifyArtistService(
         val spotifyApi = spotifyService.register(spotifyAuthorization.createClientCredentialsSync())
         try {
             val artistList = spotifyApi.getSeveralArtists(ARTIST_IDS).build().execute().asList()
-            val artistDtos = spotifyArtistMapper.mapToArtistDtoList(artistList)
-            return artistMapper.mapArtistDtosToArtistList(artistDtos)
+            val artistDtos = artistList.map { spotifyArtistMapper.mapToArtistDto(it) }
+            return artistDtos.map { artistMapper.mapArtistDtoToArtist(it) }
         } catch (ioException: IOException) {
             logger.error("Error {}", ioException.localizedMessage)
         } catch (swae: SpotifyWebApiException) {
