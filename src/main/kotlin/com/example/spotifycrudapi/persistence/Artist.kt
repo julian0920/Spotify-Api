@@ -11,6 +11,9 @@ class Artist(
     val id: Long,
 
     @Column(nullable = false)
+    val artistId: String,
+
+    @Column(nullable = false)
     var name: String,
 
     @Column(nullable = true)

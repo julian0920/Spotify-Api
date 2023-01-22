@@ -11,6 +11,9 @@ class Album(
     val id: Long,
 
     @Column(nullable = false)
+    val albumId: String,
+
+    @Column(nullable = false)
     var name: String,
 
     @Column(name = "release_Date", nullable = true)
