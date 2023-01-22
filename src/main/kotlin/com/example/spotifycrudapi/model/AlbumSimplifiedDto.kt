@@ -1,7 +1,7 @@
 package com.example.spotifycrudapi.model
 
 data class AlbumSimplifiedDto(
-    val id: String,
+    val albumId: String,
 
     val name: String,
 
