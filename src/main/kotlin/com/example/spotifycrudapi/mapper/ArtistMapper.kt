@@ -7,7 +7,7 @@ import org.mapstruct.Mapper
 import org.mapstruct.MappingConstants
 
 @Mapper(
-    uses = [SpotifyArtistMapper::class],
+    uses = [AlbumMapper::class],
     componentModel = MappingConstants.ComponentModel.SPRING,
     injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
@@ -15,9 +15,5 @@ interface ArtistMapper {
 
     fun mapArtistToArtistDto(artist: Artist): ArtistDto
 
-    fun mapArtistsToArtistDtoList(artists: List<Artist>): List<ArtistDto>
-
     fun mapArtistDtoToArtist(artistDto: ArtistDto): Artist
-
-    fun mapArtistDtosToArtistList(artistDtos: List<ArtistDto>): List<Artist>
 }

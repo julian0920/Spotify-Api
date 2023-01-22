@@ -8,14 +8,12 @@ import org.mapstruct.Mapping
 import org.mapstruct.MappingConstants
 import se.michaelthelin.spotify.model_objects.specification.AlbumSimplified
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, injectionStrategy = InjectionStrategy.CONSTRUCTOR, uses = [ArtistSimplifiedMapper::class])
 interface AlbumSimplifiedMapper {
 
+    @Mapping(target = "albumId", source = "id")
     @Mapping(target = "type", source = "type.type")
-    @Mapping(target = "artists.id", source = "artists.id")
-    @Mapping(target = "artists.name", source = "artists.name")
-    @Mapping(target = "artists.type", source = "artists.type.type")
-    fun mapAlbumSimplifiedListToAlbumSimplifiedDtoList(albumSimplifiedList: List<AlbumSimplified>): List<AlbumSimplifiedDto>
+    fun mapAlbumSimplifiedToAlbumSimplifiedDto(albumSimplified: AlbumSimplified): AlbumSimplifiedDto
 
-    fun mapAlbumSimplifiedDtoListToAlbumDtoList(albumSimplifiedList: List<AlbumSimplifiedDto>): List<AlbumDto>
+    fun mapAlbumSimplifiedDtoToAlbumDto(albumSimplified: AlbumSimplifiedDto): AlbumDto
 }
