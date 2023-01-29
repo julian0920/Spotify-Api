@@ -22,7 +22,7 @@ class Album(
     @Column(name = "album_type", nullable = true)
     val type: String?,
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
         name = "album_artist",
         joinColumns = [JoinColumn(name = "artist_id")],
