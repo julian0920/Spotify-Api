@@ -15,13 +15,13 @@ class AlbumService(
 
     private val logger = KotlinLogging.logger {}
 
-    fun getAllAlbums(): List<AlbumDto> {
+    fun getAllAlbums(): Set<AlbumDto> {
         val albums = albumRepository.findAll()
-        return albums.map { albumMapper.mapAlbumToAlbumDto(it) }
+        return albums.map { albumMapper.mapAlbumToAlbumDto(it) }.toSet()
     }
 
-    fun getAlbumById(albumId: Long): AlbumDto {
-        val album = albumRepository.findById(albumId)
+    fun getAlbumById(albumId: String): AlbumDto {
+        val album = albumRepository.findByAlbumId(albumId)
             .orElseThrow { IllegalArgumentException(MessageFormat.format("unknown album id {}", albumId)) }
         return albumMapper.mapAlbumToAlbumDto(album)
     }
@@ -35,16 +35,16 @@ class AlbumService(
         }
     }
 
-    fun updateAlbumNameById(albumId: Long, name: String) {
-        val album = albumRepository.findById(albumId)
+    fun updateAlbumNameById(albumId: String, name: String) {
+        val album = albumRepository.findByAlbumId(albumId)
         album.ifPresent {
             it.name = name
             albumRepository.save(it)
         }
     }
 
-    fun updateAlbumReleaseDateById(albumId: Long, releaseDate: String) {
-        val album = albumRepository.findById(albumId)
+    fun updateAlbumReleaseDateById(albumId: String, releaseDate: String) {
+        val album = albumRepository.findByAlbumId(albumId)
         album.ifPresent {
             it.releaseDate = releaseDate
             albumRepository.save(it)
@@ -55,9 +55,9 @@ class AlbumService(
         albumRepository.deleteAll()
     }
 
-    fun deleteAlbumById(albumId: Long) {
+    fun deleteAlbumById(albumId: String) {
         try {
-            albumRepository.deleteById(albumId)
+            albumRepository.deleteByAlbumId(albumId)
         } catch (iae: IllegalArgumentException) {
             logger.error("unknown album id {}", albumId)
         }

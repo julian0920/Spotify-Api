@@ -15,13 +15,13 @@ class ArtistService(
 
     private val logger = KotlinLogging.logger {}
 
-    fun getAllArtists(): List<ArtistDto> {
+    fun getAllArtists(): Set<ArtistDto> {
         val artists = artistRepository.findAll()
-        return artists.map { artistMapper.mapArtistToArtistDto(it) }
+        return artists.map { artistMapper.mapArtistToArtistDto(it) }.toSet()
     }
 
-    fun getArtistById(artistId: Long): ArtistDto {
-        val artist = artistRepository.findById(artistId)
+    fun getArtistById(artistId: String): ArtistDto {
+        val artist = artistRepository.findByArtistId(artistId)
             .orElseThrow { IllegalArgumentException(MessageFormat.format("unknown artist id {}", artistId)) }
         return artistMapper.mapArtistToArtistDto(artist)
     }
@@ -35,16 +35,16 @@ class ArtistService(
         }
     }
 
-    fun updateArtistNameById(artistId: Long, name: String) {
-        val artist = artistRepository.findById(artistId)
+    fun updateArtistNameById(artistId: String, name: String) {
+        val artist = artistRepository.findByArtistId(artistId)
         artist.ifPresent {
             it.name = name
             artistRepository.save(it)
         }
     }
 
-    fun updateArtistPopularityById(artistId: Long, popularity: Int) {
-        val artist = artistRepository.findById(artistId)
+    fun updateArtistPopularityById(artistId: String, popularity: Int) {
+        val artist = artistRepository.findByArtistId(artistId)
         artist.ifPresent {
             it.popularity = popularity
             artistRepository.save(it)
@@ -55,9 +55,9 @@ class ArtistService(
         artistRepository.deleteAll()
     }
 
-    fun deleteArtistById(artistId: Long) {
+    fun deleteArtistById(artistId: String) {
         try {
-            artistRepository.deleteById(artistId)
+            artistRepository.deleteByArtistId(artistId)
         } catch (iae: IllegalArgumentException) {
             logger.error("unknown artist id {}", artistId)
         }

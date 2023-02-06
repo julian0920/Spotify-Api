@@ -11,18 +11,18 @@ class AlbumController(
 ) {
 
     @GetMapping
-    fun getAllAlbums(): List<AlbumDto> {
+    fun getAllAlbums(): Set<AlbumDto> {
         return albumService.getAllAlbums()
     }
 
     @GetMapping("/{albumId}")
-    fun getAlbumById(@PathVariable("albumId") albumId: Long): AlbumDto {
+    fun getAlbumById(@PathVariable("albumId") albumId: String): AlbumDto {
         return albumService.getAlbumById(albumId)
     }
 
     @PutMapping("/{albumId}/{name}")
     fun updateAlbumNameById(
-        @PathVariable("albumId") albumId: Long,
+        @PathVariable("albumId") albumId: String,
         @PathVariable("name") name: String
     ) {
         albumService.updateAlbumNameById(albumId, name)
@@ -30,7 +30,7 @@ class AlbumController(
 
     @PutMapping("/{albumId}/{releaseDate}")
     fun updateAlbumReleaseDateById(
-        @PathVariable("albumId") albumId: Long,
+        @PathVariable("albumId") albumId: String,
         @PathVariable("releaseDate") releaseDate: String
     ) {
         albumService.updateAlbumReleaseDateById(albumId, releaseDate)
@@ -47,7 +47,7 @@ class AlbumController(
     }
 
     @DeleteMapping("/{albumId}")
-    fun deleteAlbumById(@PathVariable("albumId") albumId: Long) {
+    fun deleteAlbumById(@PathVariable("albumId") albumId: String) {
         albumService.deleteAlbumById(albumId)
     }
 }

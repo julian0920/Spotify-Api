@@ -11,18 +11,18 @@ class ArtistController(
 ) {
 
     @GetMapping
-    fun getAllArtists(): List<ArtistDto> {
+    fun getAllArtists(): Set<ArtistDto> {
         return artistService.getAllArtists()
     }
 
     @GetMapping("/{artistId}")
-    fun getArtistById(@PathVariable("artistId") artistId: Long): ArtistDto {
+    fun getArtistById(@PathVariable("artistId") artistId: String): ArtistDto {
         return artistService.getArtistById(artistId)
     }
 
     @PutMapping("/{artistId}/{name}")
     fun updateArtistNameById(
-        @PathVariable("artistId") artistId: Long,
+        @PathVariable("artistId") artistId: String,
         @PathVariable("name") name: String
     ) {
         artistService.updateArtistNameById(artistId, name)
@@ -30,7 +30,7 @@ class ArtistController(
 
     @PutMapping("/{artistId}/{popularity}")
     fun updateArtistPopularityById(
-        @PathVariable("artistId") artistId: Long,
+        @PathVariable("artistId") artistId: String,
         @PathVariable("popularity") popularity: Int
     ) {
         artistService.updateArtistPopularityById(artistId, popularity)
@@ -47,7 +47,7 @@ class ArtistController(
     }
 
     @DeleteMapping("/{artistId}")
-    fun deleteArtistById(@PathVariable("artistId") artistId: Long) {
+    fun deleteArtistById(@PathVariable("artistId") artistId: String) {
         artistService.deleteArtistById(artistId)
     }
 }
