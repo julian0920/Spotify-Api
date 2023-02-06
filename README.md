@@ -31,7 +31,3 @@ You can download IntelliJ from [here](https://www.jetbrains.com/de-de/idea/downl
 3. Check if you have the Gradle Task Symbol on the right side.
 4. Open the Gradle Task Symbol and enter `Tasks` -> `application` -> `bootRun`
 5. When The Application runs you can use Postman or another preferred tool of your choice to perform CRUD Operations on the H2 Database.
-
-## Future improvements:
-- Add Code Coverage with JUnit Tests and WireMock
-- Add Hibernate Fuction to be able to search for albums and artist by album/artist id. Currently there is needed to know the id of the db entry
