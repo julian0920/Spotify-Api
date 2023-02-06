@@ -34,3 +34,4 @@ You can download IntelliJ from [here](https://www.jetbrains.com/de-de/idea/downl
 
 ## Future improvements:
 - Add Code Coverage with JUnit Tests and WireMock
+- Add Hibernate Fuction to be able to search for albums and artist by album/artist id. Currently there is needed to know the id of the db entry
