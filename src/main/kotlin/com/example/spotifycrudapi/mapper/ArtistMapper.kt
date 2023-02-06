@@ -7,7 +7,6 @@ import org.mapstruct.Mapper
 import org.mapstruct.MappingConstants
 
 @Mapper(
-    uses = [AlbumMapper::class],
     componentModel = MappingConstants.ComponentModel.SPRING,
     injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
