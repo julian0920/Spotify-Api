@@ -7,7 +7,7 @@ data class ArtistDto(
 
     val popularity: String?,
 
-    val genres: List<String>?,
+    val genres: Set<String>?,
 
-    val albums: List<AlbumDto>?
+    val albums: Set<AlbumDto>?
 )

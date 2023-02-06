@@ -29,5 +29,5 @@ class Artist(
         fetch = FetchType.LAZY,
         mappedBy = "artists"
     )
-    val albums: List<Album>?
+    val albums: Set<Album>?
 )

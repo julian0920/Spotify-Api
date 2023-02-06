@@ -9,5 +9,5 @@ data class AlbumDto(
 
     val type: String?,
 
-    val artists: List<ArtistDto>
+    val artists: Set<ArtistDto>
 )

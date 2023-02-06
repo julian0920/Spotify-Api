@@ -25,17 +25,17 @@ class SpotifyArtistService(
 
     private val logger = KotlinLogging.logger {}
 
-    fun getSeveralArtistsByIds(): List<Artist> {
+    fun getSeveralArtistsByIds(): Set<Artist> {
         val spotifyApi = spotifyService.register(spotifyAuthorization.createClientCredentialsSync())
         try {
             val artistList = spotifyApi.getSeveralArtists(ARTIST_IDS).build().execute().asList()
             val artistDtos = artistList.map { spotifyArtistMapper.mapToArtistDto(it) }
-            return artistDtos.map { artistMapper.mapArtistDtoToArtist(it) }
+            return artistDtos.map { artistMapper.mapArtistDtoToArtist(it) }.toSet()
         } catch (ioException: IOException) {
             logger.error("Error {}", ioException.localizedMessage)
         } catch (swae: SpotifyWebApiException) {
             logger.error("Spotify Web Api Exception {}", swae.localizedMessage)
         }
-        return emptyList()
+        return emptySet()
     }
 }

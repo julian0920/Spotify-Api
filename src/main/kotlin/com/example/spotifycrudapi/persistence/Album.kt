@@ -28,5 +28,5 @@ class Album(
         joinColumns = [JoinColumn(name = "artist_id")],
         inverseJoinColumns = [JoinColumn(name = "album_id")]
     )
-    val artists: List<Artist>
+    val artists: Set<Artist>
 )
