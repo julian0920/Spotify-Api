@@ -22,11 +22,7 @@ class Album(
     @Column(name = "album_type", nullable = true)
     val type: String?,
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    @JoinTable(
-        name = "album_artist",
-        joinColumns = [JoinColumn(name = "artist_id")],
-        inverseJoinColumns = [JoinColumn(name = "album_id")]
-    )
-    val artists: Set<Artist>
+    @Column(nullable = true)
+    @OneToMany(targetEntity = Artist::class, fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    val artists: Set<Artist>?
 )
