@@ -18,7 +18,7 @@ class StartupApplicationListener(
 ) : ApplicationListener<ContextRefreshedEvent> {
     @EventListener
     override fun onApplicationEvent(event: ContextRefreshedEvent) {
-        albumRepository.saveAll(spotifyAlbumService.getArtistAlbumById("4zYX8Aa744hQ5O2hpAYQI3"))
         artistRepository.saveAll(spotifyArtistService.getSeveralArtistsByIds())
+        albumRepository.saveAll(spotifyAlbumService.getArtistAlbumById("4zYX8Aa744hQ5O2hpAYQI3"))
     }
 }
