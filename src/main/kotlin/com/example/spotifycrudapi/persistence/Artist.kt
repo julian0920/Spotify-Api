@@ -3,7 +3,7 @@ package com.example.spotifycrudapi.persistence
 import javax.persistence.*
 
 @Entity
-@Table(name = "artist")
+@Table(name = "artist", uniqueConstraints = [javax.persistence.UniqueConstraint(columnNames = ["id", "name"])])
 class Artist(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +19,11 @@ class Artist(
     @Column(nullable = true)
     var popularity: Int?,
 
-    @Column(nullable = true)
     @ElementCollection
-    val genres: List<String>?,
+    @CollectionTable(name = "Genres")
+    val genres: Set<String>?,
 
-    @Column(nullable = true)
-    @OneToMany(targetEntity = Album::class, fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    val albums: Set<Album>?
+    @ManyToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @JoinColumn(name = "album_id")
+    val album: Album?
 )
