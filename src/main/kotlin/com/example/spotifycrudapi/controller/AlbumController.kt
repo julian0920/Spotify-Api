@@ -20,7 +20,7 @@ class AlbumController(
         return albumService.getAlbumById(albumId)
     }
 
-    @PutMapping("/{albumId}/{name}")
+    @PutMapping("/update/{albumId}/{name}")
     fun updateAlbumNameById(
         @PathVariable("albumId") albumId: String,
         @PathVariable("name") name: String
