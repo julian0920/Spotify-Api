@@ -15,6 +15,7 @@ spring:
     hibernate:
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
       dialect: org.hibernate.dialect.H2Dialect
+      ddl-auto: update
 
 # Spotify Authorization
 spotify:
