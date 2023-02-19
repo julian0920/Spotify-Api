@@ -3,11 +3,11 @@ package com.example.spotifycrudapi.model
 data class ArtistDto(
     val artistId: String,
 
-    val name: String,
+    var name: String,
 
-    val popularity: String?,
+    var popularity: Int?,
 
     val genres: Set<String>?,
 
-    val albums: Set<AlbumDto>?
+    val album: AlbumDto?
 )
