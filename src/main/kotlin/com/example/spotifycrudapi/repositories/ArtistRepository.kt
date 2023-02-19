@@ -13,8 +13,7 @@ interface ArtistRepository : JpaRepository<Artist, Long> {
     @Query(value = "SELECT a FROM Artist a WHERE a.artistId = :artistId")
     fun findByArtistId(@Param("artistId") artistId: String): Optional<Artist>
 
-    @Query(value = "DELETE FROM Artist WHERE artistId = :artistId")
+    @Query(value = "DELETE FROM Artist a WHERE a.artistId = :artistId")
     fun deleteByArtistId(@Param("artistId") artistId: String)
-
 
 }

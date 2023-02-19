@@ -13,6 +13,7 @@ interface AlbumRepository : JpaRepository<Album, Long> {
     @Query(value = "SELECT a FROM Album a WHERE a.albumId = :albumId")
     fun findByAlbumId(@Param("albumId") albumId: String): Optional<Album>
 
-    @Query(value = "DELETE FROM Album WHERE albumId = :albumId")
+    @Query(value = "DELETE FROM Album a WHERE a.albumId = :albumId")
     fun deleteByAlbumId(@Param("albumId") albumId: String)
+
 }
