@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.runApplication
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = ["com.example.spotifycrudapi"])
 @EntityScan(basePackageClasses = [Album::class, Artist::class])
 @EnableJpaRepositories(basePackageClasses = [AlbumRepository::class, ArtistRepository::class])
 class SpotifyCrudApiApplication

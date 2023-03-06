@@ -1,6 +1,6 @@
 package com.example.spotifycrudapi.persistence
 
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "album", uniqueConstraints = [UniqueConstraint(columnNames = ["id", "name"])])

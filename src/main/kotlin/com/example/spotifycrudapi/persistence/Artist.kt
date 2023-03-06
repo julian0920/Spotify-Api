@@ -1,9 +1,9 @@
 package com.example.spotifycrudapi.persistence
 
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
-@Table(name = "artist", uniqueConstraints = [javax.persistence.UniqueConstraint(columnNames = ["id", "name"])])
+@Table(name = "artist", uniqueConstraints = [UniqueConstraint(columnNames = ["id", "name"])])
 class Artist(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.4"
+    id("org.springframework.boot") version "3.0.1"
     id("io.spring.dependency-management") version "1.0.14.RELEASE"
     kotlin("jvm") version "1.7.20"
     kotlin("plugin.spring") version "1.7.20"
@@ -30,6 +30,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-jdbc:3.0.1")
+    implementation("org.springframework.cloud:spring-cloud-dependencies:2022.0.1")
+    implementation("org.springframework.boot:spring-boot-starter-webflux:2.6.4")
     implementation("io.springfox:springfox-swagger-ui:3.0.0")
     implementation("io.springfox:springfox-swagger2:3.0.0")
 
