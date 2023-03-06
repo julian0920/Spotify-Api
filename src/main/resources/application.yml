@@ -17,7 +17,11 @@ spring:
       dialect: org.hibernate.dialect.H2Dialect
       ddl-auto: update
 
-# Spotify Authorization
 spotify:
-  clientid: c38cedbf562c45e9b8755c94c8979e85
-  clientsecret: 691f016f3461421ea22e94f1526dea8c
+  client_id: c38cedbf562c45e9b8755c94c8979e85
+  client_secret: 691f016f3461421ea22e94f1526dea8c
+
+  spotify_token_url: https://accounts.spotify.com/api/token
+  grant_type: client_credentials
+
+  spotify_base_uri: https://api.spotify.com/v1
