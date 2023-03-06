@@ -1,4 +1,4 @@
-package com.example.spotifycrudapi.controller
+package com.example.spotifycrudapi.api
 
 import com.example.spotifycrudapi.model.ArtistDto
 import com.example.spotifycrudapi.service.ArtistService

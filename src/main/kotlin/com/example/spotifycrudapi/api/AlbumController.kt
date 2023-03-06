@@ -1,4 +1,4 @@
-package com.example.spotifycrudapi.controller
+package com.example.spotifycrudapi.api
 
 import com.example.spotifycrudapi.model.AlbumDto
 import com.example.spotifycrudapi.service.AlbumService
